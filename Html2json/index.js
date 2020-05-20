@@ -2,7 +2,7 @@
 var t2j = require('tabletojson').Tabletojson;
 var j2c  = require('json2csv');
 var cherio = require('cheerio');
-
+var iconv = require('iconv-lite');
 
 module.exports = async function (context, req) {
 
@@ -56,8 +56,8 @@ module.exports = async function (context, req) {
 
         context.res = {
             'status': 200,
-            'content-type': 'application/octet-stream',
-            'body': csv
+            'content-type': 'text/plain',
+            'body': iconv.encode(csv, "Shift_JIS");
         };
         context.done();
 

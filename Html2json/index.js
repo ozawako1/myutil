@@ -57,7 +57,7 @@ module.exports = async function (context, req) {
         context.res = {
             'status': 200,
             'content-type': 'text/plain',
-            'body': iconv.encode(csv, "Shift_JIS");
+            'body': iconv.encode(csv, "Shift_JIS")
         };
         context.done();
 

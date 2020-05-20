@@ -56,7 +56,7 @@ module.exports = async function (context, req) {
 
         context.res = {
             'status': 200,
-            'content-type': 'text/plain',
+            'content-type': 'application/octet-stream',
             'body': csv
         };
         context.done();

@@ -56,7 +56,7 @@ module.exports = async function (context, req) {
             fin[key] = val;
         });
         csv = j2c.parse(fin, {withBOM: true});
-
+        body = csv;
 //        body = iconv.encode(csv, "Windows932");
 
     } catch (err) {

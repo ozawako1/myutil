@@ -41,7 +41,7 @@ module.exports = async function (context, req) {
             var val = itm['値'];
             fin[key] = val;
         });
-        csv = j2c.parse(fin, {withBOM: true});
+        csv = j2c.parse(fin);
         
     } catch (err) {
         context.log(err.message);
@@ -53,18 +53,21 @@ module.exports = async function (context, req) {
         context.done();
 
     } finally {
+        
+        var body = iconv.encode(csv, "Windows932");
 
         context.res = {
             'status': 200,
-            'content-type': 'text/plain',
-            'body': iconv.encode(csv, "Shift_JIS")
+            'content-type': 'text/plain; charset=Windows932',
+            'body': body
         };
         context.done();
+
+        var fs = require('fs');
+        var FCSV =  "/Users/koichi.ozawa/Documents/development/out/d.csv";
+        fs.writeFileSync(FCSV, body);
 
     }
 };
 
-//var fs = require('fs');
 //var HTML = "/Users/koichi.ozawa/Documents/development/out/d.html";
-//var FCSV =  "/Users/koichi.ozawa/Documents/development/out/d.csv";
-//var html = fs.readFileSync(HTML);

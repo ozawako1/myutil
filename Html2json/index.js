@@ -16,7 +16,7 @@ module.exports = async function (context, req) {
 
     try {
         
-        var html = req.body;
+        var html = req.body.body;
         if (html == undefined) {
             throw new Error("Invalid Arg.");
         }

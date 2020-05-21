@@ -68,8 +68,10 @@ module.exports = async function (context, req) {
 
         context.res = {
             'status': 200,
+            headers: {
 //            'content-type': 'text/plain; charset=utf-8',
-            'content-type': 'application/octet-stream',
+                'content-type': 'application/octet-stream'
+            },
             'body': body
         };
         context.done();

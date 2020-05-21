@@ -55,9 +55,9 @@ module.exports = async function (context, req) {
             var val = itm['値'];
             fin[key] = val;
         });
-        csv = j2c.parse(fin);
+        csv = j2c.parse(fin, {withBOM: true});
 
-        body = iconv.encode(csv, "Windows932");
+//        body = iconv.encode(csv, "Windows932");
 
     } catch (err) {
 
@@ -68,7 +68,7 @@ module.exports = async function (context, req) {
 
         context.res = {
             'status': 200,
-            'content-type': 'text/plain',
+            'content-type': 'text/plain; charset=utf-8',
             'body': body
         };
         context.done();

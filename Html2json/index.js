@@ -12,6 +12,7 @@ module.exports = async function (context, req) {
     var body = "";
     var tab = [];
     var fin = {};
+    var fname = "";
 
     try {
         
@@ -55,6 +56,7 @@ module.exports = async function (context, req) {
             var val = itm['値'];
             fin[key] = val;
         });
+        fname = fin['Automation Program'];
         csv = j2c.parse(fin, {withBOM: true});
         body = csv;
 //        body = iconv.encode(csv, "Windows932");
@@ -70,7 +72,8 @@ module.exports = async function (context, req) {
             'status': 200,
             headers: {
 //            'content-type': 'text/plain; charset=utf-8',
-                'content-type': 'application/octet-stream'
+                'content-type': 'application/octet-stream',
+                'x-filename': fname
             },
             'body': body
         };

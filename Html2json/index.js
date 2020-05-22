@@ -2,7 +2,6 @@
 var t2j = require('tabletojson').Tabletojson;
 var j2c  = require('json2csv');
 var cherio = require('cheerio');
-var iconv = require('iconv-lite');
 
 module.exports = async function (context, req) {
 
@@ -16,7 +15,7 @@ module.exports = async function (context, req) {
 
     try {
         
-        var html = req.body.body;
+        var html = (req.body.body == undefined) ? req.body : req.body.body;
         if (html == undefined) {
             throw new Error("Invalid Arg.");
         }
@@ -59,7 +58,6 @@ module.exports = async function (context, req) {
         fname = fin['Automation Program'];
         csv = j2c.parse(fin, {withBOM: true});
         body = csv;
-//        body = iconv.encode(csv, "Windows932");
 
     } catch (err) {
 
@@ -71,19 +69,12 @@ module.exports = async function (context, req) {
         context.res = {
             'status': 200,
             headers: {
-//            'content-type': 'text/plain; charset=utf-8',
                 'content-type': 'application/octet-stream',
-                'x-filename': fname
+                'x-filename': encodeURI(fname)
             },
             'body': body
         };
         context.done();
-/*
-        var fs = require('fs');
-        var FCSV =  "/Users/koichi.ozawa/Documents/development/out/d.csv";
-        fs.writeFileSync(FCSV, body);
-*/
     }
 };
 
-//var HTML = "/Users/koichi.ozawa/Documents/development/out/d.html";

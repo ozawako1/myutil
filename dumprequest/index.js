@@ -20,6 +20,9 @@ module.exports = async function (context, req) {
     var buff = JSON.stringify(req);
     var file = dump + "/" + getfilename();
 
+    var envs = process.env;
+    buff += JSON.stringify(envs);
+
     fs.writeFileSync(file, buff);
 
     const responseMessage = "";

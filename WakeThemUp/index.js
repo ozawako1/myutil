@@ -6,6 +6,8 @@ const FUNC_HOSTS = [
     "https://lspgatewayfunc.azurewebsites.net/api/HttpTriggerJS"
 ];
 
+const url = require("url");
+
 var request = require('request');
 
 module.exports = async function (context, myTimer) {
@@ -25,10 +27,11 @@ module.exports = async function (context, myTimer) {
     }
 
     FUNC_HOSTS.forEach(function(itm){
+        var u = url.parse(itm).hostname;
         options.url = itm;
-        context.log("sending reqeust to [" + itm + "]");
+        console.log("sending reqeust to [" + u + "]");
         request(options, function (error, response, body) {
-            context.log(body);
+            console.log(u + ":" + body);
         });
     });
 

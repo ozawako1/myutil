@@ -4,7 +4,7 @@
       "name": "myTimer",
       "type": "timerTrigger",
       "direction": "in",
-      "schedule": "0 */2 8-20 * * Monday-Friday"
+      "schedule": "0 */2 7-19 * * Monday-Friday"
     }
   ]
 }

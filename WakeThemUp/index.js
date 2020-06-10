@@ -1,8 +1,8 @@
 
 const FUNC_HOSTS = [
-    "https://aiphonebookj.azurewebsites.net/api/PhoneBookHttpTriggerJS?code=Pa404aC1o9BR1waGh/Wy1jSrMeuz0fo2mvFM41A4k4yWMABvRsV79w==",
-    "https://garoonfuncj.azurewebsites.net/api/PostSchedule?code=AcH5L5PBgy1WGmIKT91j70jqWqC6hX6/1AWZAsi089ZBPdkbvQPYqQ==",
-    "https://zoomfunc.azurewebsites.net/api/GetMeetings?code=fCMZNhkVrfCBkzPVR6yUc3GVv4OMmyh5ECKn2p36ahB8MMK0hDwPBQ==",
+    "https://aiphonebookj.azurewebsites.net/api/PhoneBookHttpTriggerJS?code=" + process.env.MY_CODE_PHONEBOOK,
+    "https://garoonfuncj.azurewebsites.net/api/GetSchedule?code=" + process.env.MY_CODE_GAROON,
+    "https://zoomfunc.azurewebsites.net/api/GetMeetings?code=" + process.env.MY_CODE_ZOOM,
     "https://lspgatewayfunc.azurewebsites.net/api/HttpTriggerJS"
 ];
 

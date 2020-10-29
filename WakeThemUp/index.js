@@ -1,10 +1,25 @@
 
 const FUNC_HOSTS = [
-    "https://aiphonebookj.azurewebsites.net/api/PhoneBookHttpTriggerJS?code=" + process.env.MY_CODE_PHONEBOOK,
-    "https://garoonfuncj.azurewebsites.net/api/GetSchedule?code=" + process.env.MY_CODE_GAROON,
-    "https://zoomfunc.azurewebsites.net/api/GetMeetings?code=" + process.env.MY_CODE_ZOOM,
-    "https://lspgatewayfunc.azurewebsites.net/api/HttpTriggerJS", 
-    "https://funcs27ex0a00.azurewebsites.net/api/CancelOrder?code=" + process.env.MY_CODE_EDI
+    {
+        method: "GET",
+        url: "https://aiphonebookj.azurewebsites.net/api/PhoneBookHttpTriggerJS?code=" + process.env.MY_CODE_PHONEBOOK
+    },
+    {
+        method: "GET",
+        url: "https://garoonfuncj.azurewebsites.net/api/GetSchedule?code=" + process.env.MY_CODE_GAROON
+    },
+    {
+        method: "GET",
+        url: "https://zoomfunc.azurewebsites.net/api/GetMeetings?code=" + process.env.MY_CODE_ZOOM
+    },
+    {
+        method: "GET",
+        url: "https://lspgatewayfunc.azurewebsites.net/api/HttpTriggerJS"
+    },
+    {
+        method: "POST",
+        url: "https://funcs27ex0a00.azurewebsites.net/api/CancelOrder?code=" + process.env.MY_CODE_EDI
+    }  
 ];
 
 const url = require("url");
@@ -28,11 +43,14 @@ module.exports = async function (context, myTimer) {
     }
 
     FUNC_HOSTS.forEach(function(itm){
-        var u = url.parse(itm).hostname;
-        options.url = itm;
-        console.log("sending reqeust to [" + u + "]");
+        var host = url.parse(itm.url).hostname;
+
+        options.method = itm.method;
+        options.url = itm.url;
+        
+        context.log("sending reqeust to [" + host + "]");
         request(options, function (error, response, body) {
-            console.log(u + ":" + body);
+            context.log("Done. [" + host + ":" + body + "]");
         });
     });
 

@@ -3,7 +3,8 @@ const FUNC_HOSTS = [
     "https://aiphonebookj.azurewebsites.net/api/PhoneBookHttpTriggerJS?code=" + process.env.MY_CODE_PHONEBOOK,
     "https://garoonfuncj.azurewebsites.net/api/GetSchedule?code=" + process.env.MY_CODE_GAROON,
     "https://zoomfunc.azurewebsites.net/api/GetMeetings?code=" + process.env.MY_CODE_ZOOM,
-    "https://lspgatewayfunc.azurewebsites.net/api/HttpTriggerJS"
+    "https://lspgatewayfunc.azurewebsites.net/api/HttpTriggerJS", 
+    "https://funcs27ex0a00.azurewebsites.net/api/CancelOrder?code=" + process.env.MY_CODE_EDI
 ];
 
 const url = require("url");

@@ -19,7 +19,11 @@ const FUNC_HOSTS = [
     {
         method: "POST",
         url: "https://funcs27ex0a00.azurewebsites.net/api/CancelOrder?code=" + process.env.MY_CODE_EDI
-    }  
+    },
+    {
+        method: "GET",
+        url: "https://chatworkfuncs.azurewebsites.net/api/Users?code=" + process.env.MY_CODE_CHATWORK
+    }
 ];
 
 const url = require("url");
